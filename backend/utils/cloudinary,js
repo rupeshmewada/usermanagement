@@ -1,0 +1,14 @@
+
+import { v2 as cloudinary } from 'cloudinary'
+import fs from 'fs'
+
+
+  cloudinary.config({ 
+    cloud_name: 'dgyg91mwq', 
+    api_key: '328416694145979', 
+    api_secret: 'KsFzl5jYd09c7bpsdog9W5gWXX4' 
+  });
+
+  cloudinary.uploader
+  .upload("img.png")
+  .then(result=>console.log(result));

@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  /* background: linear-gradient(#e66465, #9198e5); */
+
+}
+
+input{
+border: 2px solid white;
+}
+
+thead tr th{
+  border: 2px solid white;
+  text-align: center;
+  color: violet;
+}
+ td{
+  border: 2px solid white;
+  text-align: center;
+}
