@@ -10,7 +10,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
 
-  console.log(token);
+  // console.log(logUser.imageSrc);
+  console.log(logUser);
 
   const logout = () => {
     // console.log("logout ");
@@ -61,6 +62,7 @@ const Navbar = () => {
               {
                 logUser.imageSrc ?
                   <img className='w-8 rounded-full' src={logUser.imageSrc} alt="" />
+                  // <img className='w-8 rounded-full' src={imguser} alt="" />
                   :
                   <img className='w-8 rounded-full' src={userlogo} alt="" />
 

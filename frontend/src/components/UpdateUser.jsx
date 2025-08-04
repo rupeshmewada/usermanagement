@@ -8,7 +8,7 @@ import { AppContext } from '../context/AppContext';
 export default function UpdateUser() {
     const navigate = useNavigate()
 
-    const { backendUrl, token, setToken, logUser, setlogUser, setAllUsers, getAllUsersdata, getUid,  } = useContext(AppContext);
+    const { backendUrl, token, setToken, logUser, setlogUser, setAllUsers, getAllUsersdata, getUid, } = useContext(AppContext);
 
     const [username, setUsername] = useState("");
     const [userId, setuserId] = useState();
@@ -16,7 +16,7 @@ export default function UpdateUser() {
     const [password, setPassword] = useState();
     const [image, setImage] = useState(false)
     const [message, setMessage] = useState()
-   
+
 
     useEffect(() => {
         if (getUid) {
@@ -42,6 +42,7 @@ export default function UpdateUser() {
             if (res.status === 200) {
                 console.log(res);
                 setMessage(res.data.message);
+                getAllUsersdata()
                 navigate('/allusers')
             }
         } catch (err) {
@@ -52,10 +53,10 @@ export default function UpdateUser() {
     return (
         <>
             <div className="bg-gray-400 w-3/4 m-auto py-20 text-black">
-           
+
                 {/* <h1 className='text-center text-2xl font-bold'>{message}</h1> */}
                 <h1 className='text-center text-2xl font-bold'>Update User</h1>
-              
+
                 <form className="max-w-sm mx-auto ">
                     <div className="mb-5">
                         <label

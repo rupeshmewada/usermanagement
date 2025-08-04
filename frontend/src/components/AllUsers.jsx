@@ -13,14 +13,12 @@ export default function AllUsers() {
     function myprofile(users) {
         setgetUid(users)
         navigate(`/profile/${users._id}`)
-
     }
 
     const editUser = (users) => {
         console.log(users);
         setgetUid(users)
         navigate(`/update`)
-
     }
 
     const deleteUser = async (id) => {

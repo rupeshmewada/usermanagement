@@ -16,7 +16,7 @@ const AppContextProvider = (props) => {
 
 
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
-    console.log(token);
+    console.log(logUser);
 
 
     const getSingleUsers = async () => {
