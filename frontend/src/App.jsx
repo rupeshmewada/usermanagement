@@ -12,6 +12,7 @@ import AllUsers from "./components/AllUsers";
 import { AppContext } from "./context/AppContext";
 import Profiles from "./components/Profiles";
 import UserProfileUpdater from "./UserProfileUpdater";
+import UpdateUser from "./components/UpdateUser";
 
 
 export default function App() {
@@ -19,20 +20,15 @@ export default function App() {
     <>
 
       <Navbar />
-      {/* <UserProfileUpdater/> */}
 
       <Routes>
-
         <Route path="/" element={< Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/allusers" element={<AllUsers />} />
         <Route path="/profile/:id" element={<Profiles />} />
+        <Route path="/update" element={<UpdateUser />} />
 
       </Routes>
-
-      {/* <Login /> */}
-      {/* <User/> */}
-
 
     </>
   )

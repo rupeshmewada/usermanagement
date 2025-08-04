@@ -14,7 +14,7 @@ export var saveImage = async (req, res) => {
     // console.log(req.body);
 
     const imageFile = req.file;
-    console.log(imageFile);
+    // console.log(imageFile);
 
     const imageData = fs.readFileSync(req.file.path);
 
@@ -32,7 +32,7 @@ export var saveImage = async (req, res) => {
 
     res.status(200).json({ message: imageup });
   } catch (error) {
-    console.error("Upload error:", error);
+    // console.error("Upload error:", error);
     res.status(500).json({ message: "Failed to upload image" });
   }
 };
@@ -69,11 +69,9 @@ export const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const imageFile = req.file;
-    console.log(imageFile);
+    // console.log(imageFile);
 
     const imageData = fs.readFileSync(req.file.path);
-
-    
 
     const userData = {
       username,
@@ -91,11 +89,11 @@ export const registerUser = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-     let imageSrc = null;
-      if (user.image && user.image.data && user.image.contentType) {
-        const base64Image = user.image.data.toString("base64");
-        imageSrc = `data:${user.image.contentType};base64,${base64Image}`;
-      }
+    let imageSrc = null;
+    if (user.image && user.image.data && user.image.contentType) {
+      const base64Image = user.image.data.toString("base64");
+      imageSrc = `data:${user.image.contentType};base64,${base64Image}`;
+    }
 
     res.json({ success: true, token, user, imageSrc });
   } catch (error) {
@@ -134,7 +132,6 @@ export const registerUser = async (req, res) => {
 //   }
 // };
 
-
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -157,15 +154,14 @@ export const loginUser = async (req, res) => {
         imageSrc = `data:${user.image.contentType};base64,${base64Image}`;
       }
 
-      res.json({ 
-        success: true, 
-        token, 
+      res.json({
+        success: true,
+        token,
         user: {
           ...user.toObject(),
-          imageSrc // send imageSrc for frontend <img src={imageSrc} />
-        }
+          imageSrc, // send imageSrc for frontend <img src={imageSrc} />
+        },
       });
-     
     } else {
       res.json({ success: false, message: "Invalid Credentials" });
     }
@@ -217,10 +213,10 @@ export var getUser = async (req, res) => {
 export var singleUser = async (req, res) => {
   try {
     const username = req.body;
-    console.log(username._id);
+    // console.log(username._id);
 
     const getData = await UserModel.findById(username._id);
-    console.log(getData);
+    // console.log(getData);
 
     if (getData == "") {
       console.log("data not available");
@@ -262,7 +258,7 @@ export const deleteUser = async (req, res) => {
     if (deleteuser.deletedCount == 1) {
       console.log("delete successfully.......");
 
-      return res.status(200).json({ message: "data delete" });
+      return res.status(200).json({ message: true });
     } else {
       return res.status(200).json({ message: "data not available" });
     }
@@ -274,19 +270,22 @@ export const deleteUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  // console.log(req.body);
+  
   const user = req.body;
+  const { username, email, userId } = req.body;
   try {
-    const getdata = await UserModel.find({ _id: user._id });
-    console.log(getdata);
-    if (getdata) {
+    const getdata = await UserModel.find({ _id: userId });
+  
+    if (getdata && getdata.length > 0) {
+      console.log(userId);
       const updateuser = await UserModel.updateOne(
-        { _id: user._id },
-        { $set: user }
+        { _id: userId },
+        { $set: { username: username, email: email } }
       );
-      console.log("get data ", updateuser);
-      return res.json({ message: "usser update " });
+      console.log("updateuser", updateuser);
+      return res.json({ message: "user updated" });
     } else {
+      console.log("user not available");
       return res.json({ message: "user not available" });
     }
   } catch (error) {}

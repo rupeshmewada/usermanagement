@@ -17,9 +17,9 @@ const app = express();
 const port = process.env.PORT || 3000; // Define the port for the server to listen on
 
 app.use(cors());
-app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10mb' })); //
 
 import userRouter from "./routes/user.router.js";
 import todoRouter from "./routes/todo.router.js";

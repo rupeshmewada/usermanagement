@@ -10,13 +10,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
 
-  // console.log(logUser);
-  
+  console.log(token);
+
   const logout = () => {
-    console.log("logout ");
+    // console.log("logout ");
     // localStorage.setItem("")
     localStorage.setItem("token", "");
-    // localStorage.setItem("token", res.data.token);
     setToken("token", "")
     setlogUser("")
   }
@@ -31,11 +30,13 @@ const Navbar = () => {
           <li className='py-1'>HOME</li>
           <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
         </NavLink>
-
-        <NavLink to='/allusers'>
-          <li className='py-1'>ALL USER</li>
-          <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
-        </NavLink>
+        {
+          token == false ? "" :
+            <NavLink to='/allusers'>
+              <li className='py-1'>ALL USER</li>
+              <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
+            </NavLink>
+        }
 
         <NavLink to='/about'>
           <li className='py-1'>ABOUT</li>
@@ -51,7 +52,7 @@ const Navbar = () => {
           <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
         </NavLink>
       </ul>
-     
+
       <div className='flex items-center gap-4'>
         {
           token && logUser
@@ -59,9 +60,9 @@ const Navbar = () => {
               <p className='capitalize'>{logUser.username}</p>
               {
                 logUser.imageSrc ?
-                <img className='w-8 rounded-full' src={logUser.imageSrc} alt="" />
-                :
-                <img className='w-8 rounded-full' src={userlogo} alt="" />
+                  <img className='w-8 rounded-full' src={logUser.imageSrc} alt="" />
+                  :
+                  <img className='w-8 rounded-full' src={userlogo} alt="" />
 
               }
               <img className='w-2.5' src={assets.dropdown_icon} alt="" />

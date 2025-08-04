@@ -12,10 +12,11 @@ const AppContextProvider = (props) => {
     const [allUsers, setAllUsers] = useState([])
     const [getuserId, setGetuserId] = useState()
     const [logUser, setlogUser] = useState();
-   
+    const [getUid, setgetUid] = useState()
+
 
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
-    // console.log(token);
+    console.log(token);
 
 
     const getSingleUsers = async () => {
@@ -24,7 +25,7 @@ const AppContextProvider = (props) => {
         }
         )
     }
- 
+
     const getAllUsersdata = async () => {
         await axios.get("/user/get").then((res) => {
             setAllUsers(res.data)
@@ -33,12 +34,12 @@ const AppContextProvider = (props) => {
     }
 
     useEffect(() => {
-        getSingleUsers()
         getAllUsersdata()
+        getSingleUsers()
 
     }, [])
 
-    const value = { allUsers, setAllUsers, getuserId, setGetuserId, token, setToken, logUser, setlogUser }
+    const value = { allUsers, setAllUsers, getuserId, setGetuserId, token, setToken, logUser, setlogUser, getAllUsersdata, setgetUid, getUid }
 
     return (
         <AppContext.Provider value={value}>
