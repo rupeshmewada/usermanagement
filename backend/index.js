@@ -1,14 +1,15 @@
 // Import necessary modules using ES6 syntax
 import express from "express";
-import multer from "multer";
 import path from "path";
-import fs from "fs";
 import { fileURLToPath } from "url";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 import connection from "./db/connection.js";
+import multer from "multer";
+import fs from "fs";
 connection()
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

@@ -54,9 +54,9 @@ export default function AllUsers() {
                                 <td>{users.username}</td>
                                 <td>{users.email}</td>
                                 <td>
-                                    <button className='p-2 border-white rounded-sm  bg-blue-800 text-pink-900 mx-2 cursor-pointer' onClick={(e) => myprofile(users)} >Profile</button>
-                                    <button className='p-2 border-white rounded-sm  bg-green-800 text-teal-700 mx-2 cursor-pointer' onClick={() => editUser(users)}>Edit</button>
-                                    <button className='p-2 border-white rounded-sm  bg-red-800 text-teal-800 mx-2 cursor-pointer' onClick={() => deleteUser(users._id)}>Delete</button>
+                                    <button className='p-2 border-white rounded-sm  bg-blue-800 text-black mx-2 cursor-pointer' onClick={(e) => myprofile(users)} >Profile</button>
+                                    <button className='p-2 border-white rounded-sm  bg-green-800 text-black mx-2 cursor-pointer' onClick={() => editUser(users)}>Edit</button>
+                                    <button className='p-2 border-white rounded-sm  bg-red-800 text-black mx-2 cursor-pointer' onClick={() => deleteUser(users._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))

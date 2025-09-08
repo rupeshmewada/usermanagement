@@ -200,6 +200,7 @@ export var getUser = async (req, res) => {
       console.log("data not available");
       return res.status(200).json({ msg: "data not available" });
     } else {
+      
       return res.status(200).json(getData);
     }
   } catch (error) {
@@ -213,16 +214,15 @@ export var getUser = async (req, res) => {
 export var singleUser = async (req, res) => {
   try {
     const username = req.body;
-    // console.log(username._id);
 
     const getData = await UserModel.findById(username._id);
-    // console.log(getData);
 
     if (getData == "") {
       console.log("data not available");
       return res.status(200).json({ msg: "data not available" });
     } else {
-      console.log(getData);
+      // console.log(getData);
+      console.log("i am single useqerwiqerwiqerw");
 
       return res.status(200).json(getData);
     }
@@ -270,12 +270,11 @@ export const deleteUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  
   const user = req.body;
   const { username, email, userId } = req.body;
   try {
     const getdata = await UserModel.find({ _id: userId });
-  
+
     if (getdata && getdata.length > 0) {
       console.log(userId);
       const updateuser = await UserModel.updateOne(

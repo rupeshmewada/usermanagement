@@ -19,5 +19,4 @@ router.post("/login", userController.loginUser);
 
 // router.post("/profile", upload.single("image"), saveImage);
 
-
 export default router;
